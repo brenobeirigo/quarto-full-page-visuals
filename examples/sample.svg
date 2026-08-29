@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title description">
+  <title id="title">Warehouse process example</title>
+  <desc id="description">Five warehouse process stages connected from receiving to shipping.</desc>
+  <rect width="960" height="420" fill="#f8fafc"/>
+  <g font-family="Arial, sans-serif" font-size="24" text-anchor="middle">
+    <g fill="#e0f2fe" stroke="#0369a1" stroke-width="3">
+      <rect x="40" y="165" width="150" height="90" rx="10"/>
+      <rect x="225" y="165" width="150" height="90" rx="10"/>
+      <rect x="410" y="165" width="150" height="90" rx="10"/>
+      <rect x="595" y="165" width="150" height="90" rx="10"/>
+      <rect x="780" y="165" width="150" height="90" rx="10"/>
+    </g>
+    <g fill="#0f172a">
+      <text x="115" y="218">Receiving</text>
+      <text x="300" y="218">Put-away</text>
+      <text x="485" y="218">Storage</text>
+      <text x="670" y="218">Picking</text>
+      <text x="855" y="218">Shipping</text>
+    </g>
+  </g>
+  <g stroke="#f97316" stroke-width="7" fill="none">
+    <path d="M190 210H215"/>
+    <path d="M375 210H400"/>
+    <path d="M560 210H585"/>
+    <path d="M745 210H770"/>
+  </g>
+</svg>

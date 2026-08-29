@@ -1,0 +1,9 @@
+project:
+  type: default
+  output-dir: _site
+  render:
+    - examples/document.qmd
+    - examples/slides.qmd
+
+execute:
+  freeze: auto

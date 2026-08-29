@@ -1,0 +1,7 @@
+title: Full-page figures and tables
+author: Breno Alves Beirigo
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  filters:
+    - full-page-figures.lua
