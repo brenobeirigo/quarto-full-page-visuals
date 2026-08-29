@@ -1,5 +1,5 @@
 ---
-title: "Full-page figures: HTML example"
+title: "Full-page visuals: HTML example"
 format: html
 filters:
   - full-page-figures

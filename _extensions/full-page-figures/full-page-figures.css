@@ -1,7 +1,9 @@
 .qfp-toolbar {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0 0.35rem;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
 }
 
 .qfp-open,
@@ -18,9 +20,53 @@
   padding: 0.45em 0.7em;
 }
 
+.qfp-open {
+  align-items: center;
+  backdrop-filter: blur(0.2rem);
+  background: color-mix(
+    in srgb,
+    var(--bs-body-bg, #fff) 68%,
+    transparent
+  );
+  border-color: color-mix(
+    in srgb,
+    var(--bs-body-color, #212529) 28%,
+    transparent
+  );
+  border-radius: 50%;
+  box-shadow: 0 0.08rem 0.28rem rgb(0 0 0 / 16%);
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  opacity: 0.58;
+  padding: 0;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.35rem;
+  top: 0.35rem;
+  transition: background-color 120ms ease, opacity 120ms ease;
+  width: 2rem;
+}
+
+.qfp-open svg {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+}
+
 .qfp-open:hover,
+.qfp-open:focus-visible {
+  background: color-mix(
+    in srgb,
+    var(--bs-body-bg, #fff) 94%,
+    transparent
+  );
+  opacity: 1;
+  outline: 3px solid color-mix(in srgb, currentColor 28%, transparent);
+  outline-offset: 2px;
+}
+
 .qfp-close:hover,
-.qfp-open:focus-visible,
 .qfp-close:focus-visible {
   background: var(--bs-secondary-bg, #e9ecef);
   outline: 3px solid color-mix(in srgb, currentColor 28%, transparent);
@@ -149,11 +195,6 @@
   overflow: hidden;
 }
 
-.reveal .qfp-toolbar {
-  position: relative;
-  z-index: 2;
-}
-
 @media (max-width: 575.98px) {
   .qfp-dialog {
     border-radius: 0;
@@ -164,6 +205,12 @@
   .qfp-content {
     height: calc(100dvh - 4.5rem);
     padding: 0.75rem;
+  }
+}
+
+@media (hover: none) {
+  .qfp-open {
+    opacity: 0.78;
   }
 }
 

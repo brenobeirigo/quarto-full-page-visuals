@@ -1,5 +1,5 @@
 ---
-title: "Full-page figures"
+title: "Full-page visuals"
 subtitle: "Reveal.js example"
 format: revealjs
 filters:
