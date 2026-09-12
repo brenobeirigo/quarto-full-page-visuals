@@ -45,6 +45,8 @@ The control is omitted from print output.
 ## Accessibility and interaction
 
 - The icon button has a caption-aware accessible name and a text tooltip.
+- SVG figures and diagrams in code-cell output get a description taken from
+  their caption, so screen readers can announce what they show.
 - Keyboard focus is visible, and focus moves into and out of the dialog.
 - The dialog closes through its button, the `Esc` key, or the backdrop.
 - The control becomes more prominent on hover, keyboard focus, and touch-only

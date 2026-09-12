@@ -10,9 +10,36 @@
     "object",
     "pre.mermaid",
   ].join(", ");
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  let generatedDescriptionIndex = 0;
 
   function pageRoots() {
     return document.querySelectorAll("main, .reveal .slides");
+  }
+
+  // Give each rendered SVG a description, taken from its caption when it has one.
+  function ensureSvgDescriptions() {
+    pageRoots().forEach(function (root) {
+      root.querySelectorAll(".cell-output-display svg").forEach(function (svg) {
+        if (svg.querySelector(":scope > desc")) {
+          return;
+        }
+
+        generatedDescriptionIndex += 1;
+        const figureCaption = svg
+          .closest("figure")
+          ?.querySelector("figcaption")
+          ?.textContent?.replace(/\s+/g, " ")
+          .trim();
+        const description = document.createElementNS(svgNamespace, "desc");
+        description.id = `qfp-visual-description-${generatedDescriptionIndex}`;
+        description.textContent = figureCaption || "Visual available in full-page view.";
+        svg.insertBefore(description, svg.firstChild);
+        if (!svg.hasAttribute("aria-describedby")) {
+          svg.setAttribute("aria-describedby", description.id);
+        }
+      });
+    });
   }
 
   function captionFor(candidate, index) {
@@ -157,6 +184,7 @@
       button.className = "qfp-open";
       button.innerHTML = [
         '<svg aria-hidden="true" focusable="false" viewBox="0 0 16 16">',
+        '  <desc id="qfp-open-icon">Open figure in full-page view</desc>',
         '  <path fill="currentColor" d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5M.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5"/>',
         "</svg>",
       ].join("");
@@ -185,6 +213,7 @@
     }
 
     function scan() {
+      ensureSvgDescriptions();
       collectCandidates().forEach(enhance);
     }
 
